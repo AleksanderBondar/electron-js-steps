@@ -1,0 +1,54 @@
+{
+  "name": "electron-next-tailwindcss",
+  "private": true,
+  "main": "build/index.js",
+  "productName": "Learning Electron.js",
+  "version": "0.0.1",
+  "author": {
+    "name": "Aleksander Bondar",
+    "email": "aleksanderbondar98@gmail.com"
+  },
+  "scripts": {
+    "clean": "rimraf dist build renderer/out renderer/.next",
+    "dev": "npm run build-electron && electron .",
+    "build-renderer": "next build renderer && next export renderer",
+    "build-electron": "tsc -p electron-src",
+    "build": "npm run build-renderer && npm run build-electron",
+    "pack-app": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "type-check": "tsc -p ./renderer/tsconfig.json && tsc -p ./electron-src/tsconfig.json"
+  },
+  "dependencies": {
+    "@react-three/cannon": "^6.5.2",
+    "@react-three/drei": "^9.57.2",
+    "@react-three/fiber": "^8.12.0",
+    "@types/tailwindcss": "^3.1.0",
+    "@types/three": "^0.149.0",
+    "autoprefixer": "^10.4.13",
+    "electron-is-dev": "^1.1.0",
+    "electron-next": "^3.1.5",
+    "postcss": "^8.4.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "socket.io-client": "^4.6.1",
+    "tailwindcss": "^3.2.7",
+    "three": "^0.150.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.6",
+    "@types/react": "^16.9.9",
+    "@types/react-dom": "^16.9.9",
+    "electron": "^13",
+    "electron-builder": "^23.0.3",
+    "next": "latest",
+    "rimraf": "^3.0.0",
+    "typescript": "^4.0.5"
+  },
+  "build": {
+    "asar": true,
+    "files": [
+      "build",
+      "renderer/out"
+    ]
+  }
+}
